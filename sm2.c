@@ -1047,7 +1047,7 @@ int ecdsa_verify(EccPoint *p_publicKey, uint8_t p_hash[NUM_ECC_DIGITS], uint8_t 
 
     uint8_t t[NUM_ECC_DIGITS];
     vli_modAdd(t, r, s, curve_n); // r + s
-    if (t == 0) return 0;
+    if (vli_isZero(r)) return 0;    //check t is zero
 
     //sG + tPa
     /* Calculate l_sum = G + Q. */
